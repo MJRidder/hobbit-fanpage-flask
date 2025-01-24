@@ -1,4 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>About Page</h1>
+
+    <h2>{{ page_title }}</h2>
+    <p>
+        Thorin and Company refers to the thirteen exiled Dwarves under the leadership of Thorin Oakenshield and the one
+        Hobbit Bilbo Baggins, who famously made the Quest of Erebor, travelling through the Misty Mountains and the
+        Wilderland to the Lonely Mountain, to recover their ancient treasure from the Kingdom of Erebor, stolen by the
+        Dragon Smaug.
+        <br><br>
+        <strong>Thorin's company were:</strong>
+        <br>
+        <li>Balin and Dwalin, sons of Fundin (descendants of Náin II)</li>
+        <li>Óin and Glóin, sons of Gróin (cousins of Balin and Dwalin)</li>
+        <li>Fíli and Kíli, brothers, nephews of Thorin</li>
+        <li>Dori, Nori and Ori (Dwarves of the House of Durin)</li>
+        <li>Bifur with his cousins Bofur and Bombur (descendants of the Dwarves of Khazad-dûm)</li>
+        <li>And Bilbo Baggins, a Hobbit of the Shire</li>
+        <li>They were joined by Gandalf for part of the journey.</li>
+        <br><br>
+        Thorin referred to himself and his Dwarven companions as "Thorin and Company" in the opening line of the message
+        left on Bilbo's mantelpiece after the unexpected party at Bag End.
+    </p>
+
+    {% for member in company %}
+
+        <div class="row featurette">
+
+            {% if loop.index % 2 !=0 %}
+
+                <div class="col-md-7">
+                    <h3> {{ loop.index }}. {{ member.name }}</h3>
+                    <p>{{ member.description }}</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+
+            {% else %}
+
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3> {{ loop.index }}. {{ member.name }}</h3>
+                    <p>{{ member.description }}</p>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        {% if loop.index != loop.length %}
+
+            <hr class="featurette-divider">
+
+        {% endif %}
+
+    {% endfor %}
+
 {% endblock %}
